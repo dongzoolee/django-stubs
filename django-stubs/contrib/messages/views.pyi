@@ -1,8 +1,8 @@
 from django.forms.forms import BaseForm
 from django.http.response import HttpResponse
-from django.utils.functional import _StrOrPromise
+from utils.functional import StrOrPromise
 
 class SuccessMessageMixin:
-    success_message: _StrOrPromise
+    success_message: StrOrPromise
     def form_valid(self, form: BaseForm) -> HttpResponse: ...
-    def get_success_message(self, cleaned_data: dict[str, str]) -> _StrOrPromise: ...
+    def get_success_message(self, cleaned_data: dict[str, str]) -> StrOrPromise: ...

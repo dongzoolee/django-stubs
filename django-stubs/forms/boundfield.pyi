@@ -6,9 +6,9 @@ from django.forms.forms import BaseForm
 from django.forms.renderers import BaseRenderer
 from django.forms.utils import ErrorList
 from django.forms.widgets import Widget
-from django.utils.functional import _StrOrPromise
 from django.utils.safestring import SafeString
 from typing_extensions import TypeAlias
+from utils.functional import StrOrPromise
 
 _AttrsT: TypeAlias = dict[str, str | bool]
 
@@ -19,8 +19,8 @@ class BoundField:
     html_name: str
     html_initial_name: str
     html_initial_id: str
-    label: _StrOrPromise
-    help_text: _StrOrPromise
+    label: StrOrPromise
+    help_text: StrOrPromise
     def __init__(self, form: BaseForm, field: Field, name: str) -> None: ...
     @property
     def subwidgets(self) -> list[BoundWidget]: ...

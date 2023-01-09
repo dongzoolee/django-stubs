@@ -3,15 +3,15 @@ from typing import Any
 
 from django import http
 from django.http.response import HttpResponseBase, HttpResponseRedirect
-from django.utils.functional import _StrOrPromise
+from utils.functional import StrOrPromise
 
 class AccessMixin:
     login_url: Any
-    permission_denied_message: _StrOrPromise
+    permission_denied_message: StrOrPromise
     raise_exception: bool
     redirect_field_name: Any
     def get_login_url(self) -> str: ...
-    def get_permission_denied_message(self) -> _StrOrPromise: ...
+    def get_permission_denied_message(self) -> StrOrPromise: ...
     def get_redirect_field_name(self) -> str: ...
     def handle_no_permission(self) -> HttpResponseRedirect: ...
 

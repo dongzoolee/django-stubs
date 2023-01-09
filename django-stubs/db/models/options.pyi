@@ -13,8 +13,8 @@ from django.db.models.fields.reverse_related import ForeignObjectRel
 from django.db.models.manager import Manager
 from django.db.models.query_utils import PathInfo
 from django.utils.datastructures import ImmutableList, _ListOrTuple
-from django.utils.functional import _StrOrPromise
 from typing_extensions import Literal, TypeAlias
+from utils.functional import StrOrPromise
 
 PROXY_PARENTS: object
 EMPTY_RELATION_TREE: Any
@@ -49,8 +49,8 @@ class Options(Generic[_M]):
     base_manager_name: str | None
     default_manager_name: str | None
     model_name: str | None
-    verbose_name: _StrOrPromise | None
-    verbose_name_plural: _StrOrPromise | None
+    verbose_name: StrOrPromise | None
+    verbose_name_plural: StrOrPromise | None
     db_table: str
     ordering: Sequence[str] | None
     indexes: list[Any]

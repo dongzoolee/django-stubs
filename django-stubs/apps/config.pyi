@@ -3,7 +3,7 @@ from collections.abc import Iterator
 
 from django.apps.registry import Apps
 from django.db.models.base import Model
-from django.utils.functional import _StrOrPromise
+from utils.functional import StrOrPromise
 
 MODELS_MODULE_NAME: str
 
@@ -12,7 +12,7 @@ class AppConfig:
     module: types.ModuleType | None
     apps: Apps | None
     label: str
-    verbose_name: _StrOrPromise
+    verbose_name: StrOrPromise
     path: str
     models_module: str | None
     models: dict[str, type[Model]]

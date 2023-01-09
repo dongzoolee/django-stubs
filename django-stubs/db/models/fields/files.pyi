@@ -10,7 +10,7 @@ from django.db.models.base import Model
 from django.db.models.fields import Field, _ErrorMessagesT, _FieldChoices
 from django.db.models.query_utils import DeferredAttribute
 from django.utils._os import _PathCompatible
-from django.utils.functional import _StrOrPromise
+from utils.functional import StrOrPromise
 
 class FieldFile(File):
     instance: Model
@@ -45,7 +45,7 @@ class FileField(Field):
     upload_to: _PathCompatible | _UploadToCallable
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         upload_to: _PathCompatible | _UploadToCallable = ...,
         storage: Storage | Callable[[], Storage] | None = ...,
@@ -63,7 +63,7 @@ class FileField(Field):
         unique_for_month: str | None = ...,
         unique_for_year: str | None = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,
@@ -91,7 +91,7 @@ class ImageFieldFile(ImageFile, FieldFile):
 class ImageField(FileField):
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         width_field: str | None = ...,
         height_field: str | None = ...,

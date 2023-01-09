@@ -7,8 +7,8 @@ from django.db.models import Combinable, QuerySet
 from django.db.models.base import Model
 from django.db.models.expressions import BaseExpression
 from django.http import HttpRequest
-from django.utils.functional import _StrOrPromise
 from typing_extensions import TypeAlias
+from utils.functional import StrOrPromise
 
 _Model = TypeVar("_Model", bound=Model)
 _ModelAdmin = TypeVar("_ModelAdmin", bound=ModelAdmin)
@@ -22,13 +22,13 @@ _DisplayCallableT = TypeVar("_DisplayCallableT", bound=_DisplayCallable)
 def action(
     function: Callable[[_ModelAdmin, _Request, _QuerySet], None],
     permissions: Sequence[str] | None = ...,
-    description: _StrOrPromise | None = ...,
+    description: StrOrPromise | None = ...,
 ) -> Callable[[_ModelAdmin, _Request, _QuerySet], None]: ...
 @overload
 def action(
     *,
     permissions: Sequence[str] | None = ...,
-    description: _StrOrPromise | None = ...,
+    description: StrOrPromise | None = ...,
 ) -> Callable[
     [Callable[[_ModelAdmin, _Request, _QuerySet], None]], Callable[[_ModelAdmin, _Request, _QuerySet], None]
 ]: ...
@@ -37,7 +37,7 @@ def display(
     function: _DisplayCallableT,
     boolean: bool | None = ...,
     ordering: str | Combinable | BaseExpression | None = ...,
-    description: _StrOrPromise | None = ...,
+    description: StrOrPromise | None = ...,
     empty_value: str | None = ...,
 ) -> _DisplayCallableT: ...
 @overload
@@ -45,7 +45,7 @@ def display(
     *,
     boolean: bool | None = ...,
     ordering: str | Combinable | BaseExpression | None = ...,
-    description: _StrOrPromise | None = ...,
+    description: StrOrPromise | None = ...,
     empty_value: str | None = ...,
 ) -> Callable[[_DisplayCallableT], _DisplayCallableT]: ...
 def register(

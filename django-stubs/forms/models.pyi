@@ -22,8 +22,8 @@ from django.forms.renderers import BaseRenderer
 from django.forms.utils import ErrorList, _DataT, _FilesT
 from django.forms.widgets import Widget
 from django.utils.datastructures import _IndexableCollection, _ListOrTuple, _PropertyDescriptor
-from django.utils.functional import _StrOrPromise
 from typing_extensions import Literal, TypeAlias
+from utils.functional import StrOrPromise
 
 ALL_FIELDS: Literal["__all__"]
 
@@ -223,7 +223,7 @@ def inlineformset_factory(
 
 class InlineForeignKeyField(Field):
     disabled: bool
-    help_text: _StrOrPromise
+    help_text: StrOrPromise
     required: bool
     show_hidden_initial: bool
     widget: _ClassLevelWidgetT
@@ -257,13 +257,13 @@ class ModelChoiceIterator:
 class ModelChoiceField(ChoiceField):
     disabled: bool
     error_messages: dict[str, str]
-    help_text: _StrOrPromise
+    help_text: StrOrPromise
     required: bool
     show_hidden_initial: bool
     validators: list[Any]
     default_error_messages: dict[str, str]
     iterator: type[ModelChoiceIterator]
-    empty_label: _StrOrPromise | None
+    empty_label: StrOrPromise | None
     queryset: QuerySet[models.Model] | None
     limit_choices_to: _AllLimitChoicesTo | None
     to_field_name: str | None
@@ -271,12 +271,12 @@ class ModelChoiceField(ChoiceField):
         self,
         queryset: None | Manager[models.Model] | QuerySet[models.Model],
         *,
-        empty_label: _StrOrPromise | None = ...,
+        empty_label: StrOrPromise | None = ...,
         required: bool = ...,
         widget: Widget | type[Widget] | None = ...,
-        label: _StrOrPromise | None = ...,
+        label: StrOrPromise | None = ...,
         initial: Any | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         to_field_name: str | None = ...,
         limit_choices_to: _AllLimitChoicesTo | None = ...,
         blank: bool = ...,
@@ -295,8 +295,8 @@ class ModelChoiceField(ChoiceField):
 
 class ModelMultipleChoiceField(ModelChoiceField):
     disabled: bool
-    empty_label: _StrOrPromise | None
-    help_text: _StrOrPromise
+    empty_label: StrOrPromise | None
+    help_text: StrOrPromise
     required: bool
     show_hidden_initial: bool
     widget: _ClassLevelWidgetT

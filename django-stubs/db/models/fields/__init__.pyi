@@ -18,7 +18,7 @@ from django.db.models.query_utils import Q, RegisterLookupMixin
 from django.forms import Field as FormField
 from django.forms import Widget
 from django.utils.datastructures import DictWrapper
-from django.utils.functional import _Getter, _StrOrPromise
+from django.utils.functional import StrOrPromise, _Getter
 from typing_extensions import TypeAlias
 
 class Empty: ...
@@ -108,7 +108,7 @@ class Field(RegisterLookupMixin, Generic[_ST, _GT]):
     _pyi_lookup_exact_type: Any
 
     widget: Widget
-    help_text: _StrOrPromise
+    help_text: StrOrPromise
     attname: str
     auto_created: bool
     primary_key: bool
@@ -122,7 +122,7 @@ class Field(RegisterLookupMixin, Generic[_ST, _GT]):
     max_length: int | None
     model: type[Model]
     name: str
-    verbose_name: _StrOrPromise
+    verbose_name: StrOrPromise
     description: str | _Getter[str]
     blank: bool
     null: bool
@@ -146,7 +146,7 @@ class Field(RegisterLookupMixin, Generic[_ST, _GT]):
     non_db_attrs: tuple[str, ...]
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         primary_key: bool = ...,
         max_length: int | None = ...,
@@ -162,7 +162,7 @@ class Field(RegisterLookupMixin, Generic[_ST, _GT]):
         unique_for_month: str | None = ...,
         unique_for_year: str | None = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         auto_created: bool = ...,
@@ -248,7 +248,7 @@ class DecimalField(Field[_ST, _GT]):
     decimal_places: int
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         max_digits: int | None = ...,
         decimal_places: int | None = ...,
@@ -263,7 +263,7 @@ class DecimalField(Field[_ST, _GT]):
         auto_created: bool = ...,
         serialize: bool = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,
@@ -277,7 +277,7 @@ class CharField(Field[_ST, _GT]):
     _pyi_lookup_exact_type: Any
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         primary_key: bool = ...,
         max_length: int | None = ...,
@@ -293,7 +293,7 @@ class CharField(Field[_ST, _GT]):
         unique_for_month: str | None = ...,
         unique_for_year: str | None = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,
@@ -307,7 +307,7 @@ class CommaSeparatedIntegerField(CharField[_ST, _GT]): ...
 class SlugField(CharField[_ST, _GT]):
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         primary_key: bool = ...,
         unique: bool = ...,
@@ -321,7 +321,7 @@ class SlugField(CharField[_ST, _GT]):
         unique_for_month: str | None = ...,
         unique_for_year: str | None = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,
@@ -337,7 +337,7 @@ class EmailField(CharField[_ST, _GT]): ...
 class URLField(CharField[_ST, _GT]):
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         *,
         primary_key: bool = ...,
@@ -354,7 +354,7 @@ class URLField(CharField[_ST, _GT]):
         unique_for_month: str | None = ...,
         unique_for_year: str | None = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         auto_created: bool = ...,
@@ -369,7 +369,7 @@ class TextField(Field[_ST, _GT]):
     _pyi_lookup_exact_type: Any
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         primary_key: bool = ...,
         max_length: int | None = ...,
@@ -385,7 +385,7 @@ class TextField(Field[_ST, _GT]):
         unique_for_month: str | None = ...,
         unique_for_year: str | None = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,
@@ -417,7 +417,7 @@ class GenericIPAddressField(Field[_ST, _GT]):
     protocol: str
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: Any | None = ...,
         protocol: str = ...,
         unpack_ipv4: bool = ...,
@@ -431,7 +431,7 @@ class GenericIPAddressField(Field[_ST, _GT]):
         auto_created: bool = ...,
         serialize: bool = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,
@@ -448,7 +448,7 @@ class DateField(DateTimeCheckMixin, Field[_ST, _GT]):
     auto_now_add: bool
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         auto_now: bool = ...,
         auto_now_add: bool = ...,
@@ -464,7 +464,7 @@ class DateField(DateTimeCheckMixin, Field[_ST, _GT]):
         auto_created: bool = ...,
         serialize: bool = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,
@@ -478,7 +478,7 @@ class TimeField(DateTimeCheckMixin, Field[_ST, _GT]):
     auto_now_add: bool
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         auto_now: bool = ...,
         auto_now_add: bool = ...,
@@ -493,7 +493,7 @@ class TimeField(DateTimeCheckMixin, Field[_ST, _GT]):
         auto_created: bool = ...,
         serialize: bool = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,
@@ -511,7 +511,7 @@ class UUIDField(Field[_ST, _GT]):
     _pyi_lookup_exact_type: uuid.UUID | str
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         *,
         name: str | None = ...,
         primary_key: bool = ...,
@@ -528,7 +528,7 @@ class UUIDField(Field[_ST, _GT]):
         unique_for_month: str | None = ...,
         unique_for_year: str | None = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         auto_created: bool = ...,
@@ -544,7 +544,7 @@ class FilePathField(Field[_ST, _GT]):
     allow_folders: bool
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         path: str | Callable[..., str] = ...,
         match: str | None = ...,
@@ -563,7 +563,7 @@ class FilePathField(Field[_ST, _GT]):
         auto_created: bool = ...,
         serialize: bool = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,

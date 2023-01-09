@@ -5,7 +5,7 @@ from django.db.backends.base.base import BaseDatabaseWrapper
 from django.db.models import lookups
 from django.db.models.lookups import PostgresOperatorLookup, Transform
 from django.db.models.sql.compiler import SQLCompiler
-from django.utils.functional import _StrOrPromise
+from utils.functional import StrOrPromise
 
 from . import Field
 from .mixins import CheckFieldDefaultMixin
@@ -15,7 +15,7 @@ class JSONField(CheckFieldDefaultMixin, Field):
     decoder: type[json.JSONDecoder] | None
     def __init__(
         self,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         encoder: type[json.JSONEncoder] | None = ...,
         decoder: type[json.JSONDecoder] | None = ...,

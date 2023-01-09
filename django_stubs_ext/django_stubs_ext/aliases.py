@@ -2,8 +2,8 @@ import typing
 
 if typing.TYPE_CHECKING:
     from django.db.models.query import _T, _QuerySet, _QuerySetAny, _Row
-    from django.utils.functional import _StrOrPromise as StrOrPromise
     from django.utils.functional import _StrPromise as StrPromise
+    from utils.functional import StrOrPromise as StrOrPromise
 
     QuerySetAny = _QuerySetAny
     ValuesQuerySet = _QuerySet[_T, _Row]

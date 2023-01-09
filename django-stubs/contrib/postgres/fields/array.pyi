@@ -6,7 +6,7 @@ from django.db.models import Field, Transform
 from django.db.models.expressions import Combinable
 from django.db.models.fields import _ErrorMessagesT, _FieldChoices
 from django.db.models.fields.mixins import CheckFieldDefaultMixin
-from django.utils.functional import _StrOrPromise
+from utils.functional import StrOrPromise
 
 # __set__ value type
 _ST = TypeVar("_ST")
@@ -28,7 +28,7 @@ class ArrayField(CheckFieldDefaultMixin, Field[_ST, _GT]):
         base_field: Field,
         size: int | None = ...,
         *,
-        verbose_name: _StrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         primary_key: bool = ...,
         max_length: int | None = ...,
@@ -44,7 +44,7 @@ class ArrayField(CheckFieldDefaultMixin, Field[_ST, _GT]):
         unique_for_month: str | None = ...,
         unique_for_year: str | None = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _StrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[_ValidatorCallable] = ...,

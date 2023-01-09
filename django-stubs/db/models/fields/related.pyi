@@ -21,8 +21,8 @@ from django.db.models.fields.reverse_related import ManyToOneRel as ManyToOneRel
 from django.db.models.fields.reverse_related import OneToOneRel as OneToOneRel
 from django.db.models.manager import RelatedManager
 from django.db.models.query_utils import FilteredRelation, PathInfo, Q
-from django.utils.functional import _GTrOrPromise
 from typing_extensions import Literal
+from utils.functional import StrOrPromise
 
 RECURSIVE_RELATIONSHIP_CONSTANT: Literal["self"]
 
@@ -54,7 +54,7 @@ class RelatedField(FieldCacheMixin, Field[_GT, _GT]):
     @property
     def target_field(self) -> Field: ...
 
-class ForeignObject(RelatedField[_GT, _GT]):
+class ForeignObject(RelatedField[_GT]):
     remote_field: ForeignObjectRel
     rel_class: type[ForeignObjectRel]
     from_fields: Sequence[str]
@@ -74,7 +74,7 @@ class ForeignObject(RelatedField[_GT, _GT]):
         swappable: bool = ...,
         *,
         db_constraint: bool = ...,
-        verbose_name: _GTrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         primary_key: bool = ...,
         unique: bool = ...,
@@ -86,7 +86,7 @@ class ForeignObject(RelatedField[_GT, _GT]):
         auto_created: bool = ...,
         serialize: bool = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _GTrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,
@@ -102,7 +102,7 @@ class ForeignObject(RelatedField[_GT, _GT]):
     @property
     def foreign_related_fields(self) -> tuple[Field, ...]: ...
 
-class ForeignKey(ForeignObject[_GT, _GT]):
+class ForeignKey(ForeignObject[_GT]):
     _pyi_private_set_type: Any | Combinable
     _pyi_private_get_type: Any
 
@@ -119,7 +119,7 @@ class ForeignKey(ForeignObject[_GT, _GT]):
         to_field: str | None = ...,
         db_constraint: bool = ...,
         *,
-        verbose_name: _GTrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         primary_key: bool = ...,
         max_length: int | None = ...,
@@ -135,7 +135,7 @@ class ForeignKey(ForeignObject[_GT, _GT]):
         unique_for_month: str | None = ...,
         unique_for_year: str | None = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _GTrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,
@@ -151,7 +151,7 @@ class ForeignKey(ForeignObject[_GT, _GT]):
     @overload
     def __get__(self: Self, instance: Any, owner: Any) -> Self: ...
 
-class OneToOneField(ForeignKey[_GT, _GT]):
+class OneToOneField(ForeignKey[_GT]):
     _pyi_private_set_type: Any | Combinable
     _pyi_private_get_type: Any
 
@@ -168,7 +168,7 @@ class OneToOneField(ForeignKey[_GT, _GT]):
         limit_choices_to: _AllLimitChoicesTo | None = ...,
         parent_link: bool = ...,
         db_constraint: bool = ...,
-        verbose_name: _GTrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         primary_key: bool = ...,
         max_length: int | None = ...,
@@ -184,7 +184,7 @@ class OneToOneField(ForeignKey[_GT, _GT]):
         unique_for_month: str | None = ...,
         unique_for_year: str | None = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _GTrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,
@@ -200,7 +200,7 @@ class OneToOneField(ForeignKey[_GT, _GT]):
     @overload
     def __get__(self: Self, instance: Any, owner: Any) -> Self: ...
 
-class ManyToManyField(RelatedField[_GT, _GT]):
+class ManyToManyField(RelatedField[_GT]):
     _pyi_private_set_type: Sequence[Any]
     _pyi_private_get_type: RelatedManager[Any]
 
@@ -228,7 +228,7 @@ class ManyToManyField(RelatedField[_GT, _GT]):
         db_table: str | None = ...,
         swappable: bool = ...,
         *,
-        verbose_name: _GTrOrPromise | None = ...,
+        verbose_name: StrOrPromise | None = ...,
         name: str | None = ...,
         primary_key: bool = ...,
         max_length: int | None = ...,
@@ -244,7 +244,7 @@ class ManyToManyField(RelatedField[_GT, _GT]):
         unique_for_month: str | None = ...,
         unique_for_year: str | None = ...,
         choices: _FieldChoices | None = ...,
-        help_text: _GTrOrPromise = ...,
+        help_text: StrOrPromise = ...,
         db_column: str | None = ...,
         db_tablespace: str | None = ...,
         validators: Iterable[validators._ValidatorCallable] = ...,

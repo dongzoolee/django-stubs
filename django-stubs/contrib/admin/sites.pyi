@@ -13,7 +13,7 @@ from django.http.response import HttpResponse
 from django.template.context import _ContextKeys
 from django.template.response import TemplateResponse
 from django.urls import URLPattern, URLResolver
-from django.utils.functional import LazyObject, _StrOrPromise
+from django.utils.functional import LazyObject, StrOrPromise
 from typing_extensions import TypeAlias
 
 if sys.version_info >= (3, 9):
@@ -31,9 +31,9 @@ class AlreadyRegistered(Exception): ...
 class NotRegistered(Exception): ...
 
 class AdminSite:
-    site_title: _StrOrPromise
-    site_header: _StrOrPromise
-    index_title: _StrOrPromise
+    site_title: StrOrPromise
+    site_header: StrOrPromise
+    index_title: StrOrPromise
     site_url: str
     login_form: type[AuthenticationForm] | None
     index_template: str | None
@@ -84,7 +84,7 @@ class AdminSite:
         self, request: HttpRequest, extra_context: Mapping[_ContextKeys, Any] | None = ...
     ) -> TemplateResponse: ...
     def login(self, request: HttpRequest, extra_context: Mapping[_ContextKeys, Any] | None = ...) -> HttpResponse: ...
-    def _build_app_dict(self, request: HttpRequest, label: _StrOrPromise | None = ...) -> dict[str, Any]: ...
+    def _build_app_dict(self, request: HttpRequest, label: StrOrPromise | None = ...) -> dict[str, Any]: ...
     def get_app_list(self, request: HttpRequest) -> list[Any]: ...
     def index(
         self, request: HttpRequest, extra_context: Mapping[_ContextKeys, Any] | None = ...

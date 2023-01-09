@@ -144,7 +144,7 @@ class DjangoContext:
         return helpers.get_private_descriptor_type(field_info, "_pyi_lookup_exact_type", is_nullable=field.null)
 
     def get_related_target_field(
-        self, related_model_cls: Type[Model], field: "ForeignKey[Any, Any]"
+        self, related_model_cls: Type[Model], field: "ForeignKey[Any]"
     ) -> "Optional[Field[Any, Any]]":
         # ForeginKey only supports one `to_fields` item (ForeignObject supports many)
         assert len(field.to_fields) == 1

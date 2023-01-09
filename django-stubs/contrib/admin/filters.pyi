@@ -7,10 +7,10 @@ from django.db.models.fields import Field
 from django.db.models.fields.related import RelatedField
 from django.db.models.query import QuerySet
 from django.http.request import HttpRequest
-from django.utils.functional import _StrOrPromise
+from utils.functional import StrOrPromise
 
 class ListFilter:
-    title: _StrOrPromise | None
+    title: StrOrPromise | None
     template: str
     used_parameters: Any
     def __init__(

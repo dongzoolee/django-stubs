@@ -32,9 +32,9 @@ from django.template.context import _ContextKeys
 from django.template.response import _TemplateForResponseT
 from django.urls.resolvers import URLPattern
 from django.utils.datastructures import _ListOrTuple
-from django.utils.functional import _StrOrPromise
 from django.utils.safestring import SafeString
 from typing_extensions import Literal, TypeAlias, TypedDict
+from utils.functional import StrOrPromise
 
 IS_POPUP_VAR: str
 TO_FIELD_VAR: str
@@ -55,7 +55,7 @@ _FieldGroups: TypeAlias = Sequence[str | Sequence[str]]
 
 class _OptionalFieldOpts(TypedDict, total=False):
     classes: Sequence[str]
-    description: _StrOrPromise
+    description: StrOrPromise
 
 class _FieldOpts(_OptionalFieldOpts, total=True):
     fields: _FieldGroups
@@ -63,7 +63,7 @@ class _FieldOpts(_OptionalFieldOpts, total=True):
 # Workaround for mypy issue, a Sequence type should be preferred here.
 # https://github.com/python/mypy/issues/8921
 # _FieldsetSpec = Sequence[Tuple[Optional[str], _FieldOpts]]
-_FieldsetSpec: TypeAlias = _ListOrTuple[tuple[_StrOrPromise | None, _FieldOpts]]
+_FieldsetSpec: TypeAlias = _ListOrTuple[tuple[StrOrPromise | None, _FieldOpts]]
 # https://github.com/python/mypy/issues/12211
 _ListFilterT: TypeAlias = Union[
     type[ListFilter],
@@ -218,7 +218,7 @@ class ModelAdmin(BaseModelAdmin[_ModelT]):
     def message_user(
         self,
         request: HttpRequest,
-        message: _StrOrPromise,
+        message: StrOrPromise,
         level: int | str = ...,
         extra_tags: str = ...,
         fail_silently: bool = ...,
@@ -291,8 +291,8 @@ class InlineModelAdmin(Generic[_ChildModelT, _ParentModelT], BaseModelAdmin[_Chi
     min_num: int | None
     max_num: int | None
     template: str
-    verbose_name: _StrOrPromise | None
-    verbose_name_plural: _StrOrPromise | None
+    verbose_name: StrOrPromise | None
+    verbose_name_plural: StrOrPromise | None
     can_delete: bool
     show_change_link: bool
     classes: Sequence[str] | None
